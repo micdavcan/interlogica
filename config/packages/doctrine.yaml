@@ -1,5 +1,13 @@
 doctrine:
     dbal:
+        driver:         'pdo_mysql'
+        server_version: '8.0.23'
+        charset:        utf8mb4
+        
+        dbname:         DB_pasticceria
+        user:           db_user
+        password:       "%env(DATABASE_PASSWORD)%"
+
         override_url: true
         url: '%env(resolve:DATABASE_URL)%'
 
