@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ingredienti
  *
- * @ORM\Table(name="ingredienti", indexes={@ORM\Index(name="fk_ingredienti_dolci_idx", columns={"id_dolce"})})
+ * @ORM\Table(name="ingredienti", indexes={@ORM\Index(name="fk_ingredienti_dolci1_idx", columns={"id_dolce"})})
  * @ORM\Entity
  */
 class Ingredienti
@@ -29,16 +29,16 @@ class Ingredienti
     private $nome;
 
     /**
-     * @var string
+     * @var int|null
      *
-     * @ORM\Column(name="quantità", type="decimal", precision=4, scale=2, nullable=false, options={"default"="0.00"})
+     * @ORM\Column(name="quantità", type="smallint", nullable=true)
      */
-    private $quantità = '0.00';
+    private $quantità = '0';
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="unità_misura", type="string", length=15, nullable=false)
+     * @ORM\Column(name="unità_misura", type="string", length=15, nullable=true)
      */
     private $unitàMisura;
 
@@ -69,12 +69,12 @@ class Ingredienti
         return $this;
     }
 
-    public function getQuantità(): ?string
+    public function getQuantità(): ?int
     {
         return $this->quantità;
     }
 
-    public function setQuantità(string $quantità): self
+    public function setQuantità(?int $quantità): self
     {
         $this->quantità = $quantità;
 
@@ -86,7 +86,7 @@ class Ingredienti
         return $this->unitàMisura;
     }
 
-    public function setUnitàMisura(string $unitàMisura): self
+    public function setUnitàMisura(?string $unitàMisura): self
     {
         $this->unitàMisura = $unitàMisura;
 
