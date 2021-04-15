@@ -35,13 +35,6 @@ class Vendita
      */
     private $disponibilità;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="dolci_id_dolce", type="integer", nullable=false)
-     */
-    private $dolciIdDolce;
-
     public function getIdVendita(): ?int
     {
         return $this->idVendita;
@@ -70,18 +63,5 @@ class Vendita
 
         return $this;
     }
-
-    public function getDolciIdDolce(): ?int
-    {
-        return $this->dolciIdDolce;
-    }
-
-    public function setDolciIdDolce(int $dolciIdDolce): self
-    {
-        $this->dolciIdDolce = $dolciIdDolce;
-
-        return $this;
-    }
-
 
 }

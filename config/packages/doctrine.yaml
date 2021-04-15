@@ -3,7 +3,10 @@ doctrine:
         driver:         'pdo_mysql'
         server_version: '8.0.23'
         charset:        utf8mb4
-        
+        default_table_options:
+                                charset: utf8mb4
+                                collate: utf8mb4_0900_ai_ci        
+
         dbname:         DB_pasticceria
         user:           db_user
         password:       "%env(DATABASE_PASSWORD)%"
