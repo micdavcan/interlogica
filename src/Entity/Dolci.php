@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Dolci
  *
- * @ORM\Table(name="dolci", indexes={@ORM\Index(name="fk_dolci_vendita1_idx", columns={"id_vendita"})})
+ * @ORM\Table(name="dolci")
  * @ORM\Entity
  */
 class Dolci
@@ -36,17 +36,6 @@ class Dolci
      * @ORM\Column(name="prezzo", type="decimal", precision=4, scale=2, nullable=false, options={"default"="0.00"})
      */
     private $prezzo = '0.00';
-
-    /**
-     * @var \Vendita
-     *
-     * @ORM\ManyToOne(targetEntity="Vendita")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_vendita", referencedColumnName="id_vendita")
-     * })
-     */
-    private $idVendita;
-
 
     public function __toString() {
         return $this->nome;
@@ -77,18 +66,6 @@ class Dolci
     public function setPrezzo(string $prezzo): self
     {
         $this->prezzo = $prezzo;
-
-        return $this;
-    }
-
-    public function getIdVendita(): ?Vendita
-    {
-        return $this->idVendita;
-    }
-
-    public function setIdVendita(?Vendita $idVendita): self
-    {
-        $this->idVendita = $idVendita;
 
         return $this;
     }
