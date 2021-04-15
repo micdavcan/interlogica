@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ingredienti
  *
- * @ORM\Table(name="ingredienti", indexes={@ORM\Index(name="fk_ingredienti_dolci_idx", columns={"id_dolce"})})
+ * @ORM\Table(name="ingredienti", indexes={@ORM\Index(name="fk_ingredienti_dolci1_idx", columns={"id_dolce"})})
  * @ORM\Entity
  */
 class Ingredienti
@@ -29,18 +29,18 @@ class Ingredienti
     private $nome;
 
     /**
-     * @var string
+     * @var int|null
      *
-     * @ORM\Column(name="quantità", type="decimal", precision=4, scale=2, nullable=false, options={"default"="0.00"})
+     * @ORM\Column(name="quantità", type="smallint", nullable=true)
      */
-    private $quantità = '0.00';
+    private $quantita = '0';
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="unità_misura", type="string", length=15, nullable=false)
+     * @ORM\Column(name="unità_misura", type="string", length=15, nullable=true)
      */
-    private $unitàMisura;
+    private $unitaMisura;
 
     /**
      * @var \Dolci
@@ -50,7 +50,11 @@ class Ingredienti
      *   @ORM\JoinColumn(name="id_dolce", referencedColumnName="id_dolce")
      * })
      */
-    private $idDolce;
+    private $Dolce;
+
+    public function __toString() {
+        return $this->nome;
+    }
 
     public function getIdIngrediente(): ?int
     {
@@ -69,38 +73,38 @@ class Ingredienti
         return $this;
     }
 
-    public function getQuantità(): ?string
+    public function getquantita(): ?int
     {
-        return $this->quantità;
+        return $this->quantita;
     }
 
-    public function setQuantità(string $quantità): self
+    public function setquantita(?int $quantita): self
     {
-        $this->quantità = $quantità;
+        $this->quantita = $quantita;
 
         return $this;
     }
 
-    public function getUnitàMisura(): ?string
+    public function getunitaMisura(): ?string
     {
-        return $this->unitàMisura;
+        return $this->unitaMisura;
     }
 
-    public function setUnitàMisura(string $unitàMisura): self
+    public function setunitaMisura(?string $unitaMisura): self
     {
-        $this->unitàMisura = $unitàMisura;
+        $this->unitaMisura = $unitaMisura;
 
         return $this;
     }
 
-    public function getIdDolce(): ?Dolci
+    public function getDolce(): ?Dolci
     {
-        return $this->idDolce;
+        return $this->Dolce;
     }
 
-    public function setIdDolce(?Dolci $idDolce): self
+    public function setDolce(?Dolci $idDolce): self
     {
-        $this->idDolce = $idDolce;
+        $this->Dolce = $Dolce;
 
         return $this;
     }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Vendita
  *
- * @ORM\Table(name="vendita", indexes={@ORM\Index(name="fk_vendita_dolci1_idx", columns={"id_dolce"})})
+ * @ORM\Table(name="vendita")
  * @ORM\Entity
  */
 class Vendita
@@ -34,16 +34,6 @@ class Vendita
      * @ORM\Column(name="disponibilità", type="smallint", nullable=false, options={"unsigned"=true})
      */
     private $disponibilità;
-
-    /**
-     * @var \Dolci
-     *
-     * @ORM\ManyToOne(targetEntity="Dolci")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_dolce", referencedColumnName="id_dolce")
-     * })
-     */
-    private $idDolce;
 
     public function getIdVendita(): ?int
     {
@@ -73,18 +63,5 @@ class Vendita
 
         return $this;
     }
-
-    public function getIdDolce(): ?Dolci
-    {
-        return $this->idDolce;
-    }
-
-    public function setIdDolce(?Dolci $idDolce): self
-    {
-        $this->idDolce = $idDolce;
-
-        return $this;
-    }
-
 
 }
