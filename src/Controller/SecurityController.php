@@ -25,12 +25,13 @@ class SecurityController extends AbstractController
 
         //Modifica del 16/04/2021
         //return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
-
+        
+        //N.B.: @EasyAdmin = /easyadmin-bundle/src/Resources/view
         return $this->render('@EasyAdmin/page/login.html.twig', [
             'error' => $error,
             'last_username' => $lastUsername,
             // OPTIONALI parametri per personalizzare il Form di login:
-            'page_title' => 'ACCOUNT LOGIN',
+            'page_title' => 'Account Login',
             'csrf_token_intention' => 'authenticate',
             'username_parameter' => 'email',
             'password_parameter' => 'password'

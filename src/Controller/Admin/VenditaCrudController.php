@@ -24,9 +24,9 @@ class VenditaCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Vendita per dolce')
+            ->setEntityLabelInSingular('vetrina per dolce')
             ->setEntityLabelInPlural('Vetrina per Dolci')
-            ->setSearchFields(['data', 'disponibilità'])
+            ->setSearchFields(['data', 'disponibilita'])
             //->setDefaultSort(['nome' => 'DESC']);
         ;
     }
@@ -42,6 +42,6 @@ class VenditaCrudController extends AbstractCrudController
     {
         yield AssociationField::new('Dolce');
         yield DateField::new('data');
-        yield IntegerField::new('disponibilità');
+        yield IntegerField::new('disponibilita');
     }
 }

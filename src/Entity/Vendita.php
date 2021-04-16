@@ -31,9 +31,9 @@ class Vendita
     /**
      * @var int
      *
-     * @ORM\Column(name="disponibilità", type="smallint", nullable=false, options={"unsigned"=true})
+     * @ORM\Column(name="disponibilita", type="smallint", nullable=false, options={"unsigned"=true})
      */
-    private $disponibilità;
+    private $disponibilita;
 
     /**
      * @var \Dolci
@@ -66,14 +66,14 @@ class Vendita
         return $this;
     }
 
-    public function getDisponibilità(): ?int
+    public function getDisponibilita(): ?int
     {
-        return $this->disponibilità;
+        return $this->disponibilita;
     }
 
-    public function setDisponibilità(int $disponibilità): self
+    public function setDisponibilita(int $disponibilita): self
     {
-        $this->disponibilità = $disponibilità;
+        $this->disponibilita = $disponibilita;
 
         return $this;
     }

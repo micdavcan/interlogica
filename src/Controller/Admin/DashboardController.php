@@ -7,6 +7,7 @@ use App\Entity\Ingredienti;
 use App\Entity\Vendita;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\CrudUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,6 +26,11 @@ class DashboardController extends AbstractDashboardController
 
         return $this->redirect($url);
 
+    }
+
+    public function configureAssets(): Assets
+    {
+        return Assets::new()->addCssFile('css/menu.css');
     }
 
     public function configureDashboard(): Dashboard
