@@ -23,7 +23,19 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        //Modifica del 16/04/2021
+        //return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+
+        return $this->render('@EasyAdmin/page/login.html.twig', [
+            'error' => $error,
+            'last_username' => $lastUsername,
+            // OPTIONALI parametri per personalizzare il Form di login:
+            'page_title' => 'PASTICCERIA - Login',
+            'csrf_token_intention' => 'authenticate',
+            'username_parameter' => 'email',
+            'password_parameter' => 'password'
+        ]);
+        
     }
 
     /**
