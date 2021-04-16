@@ -1,0 +1,13 @@
+.my-login-wrapper {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 4px 4px 6px gray;
+}
+
+.mb-4 {
+    margin-top: 3.5rem;
+}
+
+.logo {
+    color: var(--color-primary);
+}

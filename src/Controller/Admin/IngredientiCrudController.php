@@ -27,7 +27,7 @@ class IngredientiCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('Ingrediente per dolce')
             ->setEntityLabelInPlural('Ingredienti per Dolci')
-            ->setSearchFields(['nome', 'quantità', 'unità_misura'])
+            ->setSearchFields(['nome', 'quantita', 'unitaMisura'])
             //->setDefaultSort(['nome' => 'DESC']);
         ;
     }
@@ -35,7 +35,7 @@ class IngredientiCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add(EntityFilter::new('Dolce'))
+            ->add(EntityFilter::new('Dolce'))->add('nome')
         ;
     }
     
