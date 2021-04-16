@@ -30,7 +30,7 @@ class SecurityController extends AbstractController
             'error' => $error,
             'last_username' => $lastUsername,
             // OPTIONALI parametri per personalizzare il Form di login:
-            'page_title' => 'PASTICCERIA - Login',
+            'page_title' => 'ACCOUNT LOGIN',
             'csrf_token_intention' => 'authenticate',
             'username_parameter' => 'email',
             'password_parameter' => 'password'
