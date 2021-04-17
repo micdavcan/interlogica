@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Dolci;
+use App\Entity\Vendita;
 use App\Repository\DolciRepository;
 use App\Repository\VenditaRepository;
 use App\Repository\IngredientiRepository;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
-class VetrinaController {
+class VetrinaController extends AbstractController {
 
     /**
      * @Route("/", name="homepage")
@@ -21,7 +22,6 @@ class VetrinaController {
         return new Response($twig->render('pasticceria/index.html.twig', [
             'dolci' => $dolciRepository->findAll()
             ]));
-            
     }
 
     /**
