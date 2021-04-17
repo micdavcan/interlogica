@@ -4,13 +4,14 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Repository\DolciRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Dolci
  *
  * @ORM\Table(name="dolci")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=DolciRepository::class)
  */
 class Dolci
 {

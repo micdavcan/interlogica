@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pasticceria{% endblock %}
+
+{% block body %}
+    <h2>Dolci in vetrina</h2>
+
+    {% for dolce in dolci %}
+        <h4>{{ dolce }} € {{ dolce.prezzo }}</h4>
+        <p>
+            <a href="/dettagli/{{ dolce.idDolce }}">Ingredienti</a>
+        </p>
+    {% endfor %}
+{% endblock %}

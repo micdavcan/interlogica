@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pasticceria - {{ dolci }}{% endblock %}
+
+{% block body %}
+    <h2>Dolce - {{ dolci }}</h2>
+
+    {% if ingredienti|length > 0 %}
+        {% for ingrediente in ingredienti %}
+            {#
+            {% if ingrediente.photofilename %}
+                <img src="{{ asset('uploads/photos/' ~ ingrediente.photofilename) }}" />
+            {% endif %}
+            #}
+            <h4>{{ ingrediente.nome }}</h4>
+            <small>
+                {{ ingrediente.quantita }} {{ ingrediente.unitaMisura}}
+            </small>
+
+            {#<p>{{ ingrediente.text }}</p>#}
+        {% endfor %}
+    {% else %}
+        <div>Non sono stati ancora inseriti ingredienti per il dolce.</div>
+    {% endif %}
+{% endblock %}

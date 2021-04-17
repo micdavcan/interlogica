@@ -34,7 +34,7 @@ class VenditaCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add(EntityFilter::new('Dolce'))
+            ->add(EntityFilter::new('Dolce'))->add('data');
         ;
     }
     

@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use App\Repository\VenditaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Vendita
  *
  * @ORM\Table(name="vendita", indexes={@ORM\Index(name="fk_vendita_dolci1_idx", columns={"id_dolce"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=VenditaRepository::class)
  */
 class Vendita
 {
@@ -44,11 +45,11 @@ class Vendita
      * })
      */
     private $Dolce;
-/*
+
     public function __toString() {
-        return $this->nome;
+        return $this->disponibilita;
     }
-*/
+       
     public function getIdVendita(): ?int
     {
         return $this->idVendita;
