@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pasticceria{% endblock %}
+
+{% block body %}
+    <p><a href="/admin">Accedi</a></p>
+    <hr>
+    <h2>Dolci in vetrina</h2>
+
+    {% if vendite|length > 0 %}
+        {% for vendita in vendite %}
+            <h3>{{ vendita.Dolce }}</h3> <h4>Prezzo € {{ vendita.Dolce.prezzo }}  -   Messo in vetrina il {{ vendita.data|format_datetime('medium', 'short') }} - Pezzi in vendita: {{ vendita.disponibilita }}</h4>
+            <p>
+                <a href="/dettagli/{{ vendita.Dolce.idDolce }}">Ingredienti</a>
+            </p>
+        {% endfor %}
+    {% else %}
+        <div>Non sono stati ancora inseriti dolci in vetrina.</div>
+    {% endif %}
+{% endblock %}

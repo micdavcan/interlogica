@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
-class VetrinaController extends AbstractController {
+class VetrinaController {
 
     /**
      * @Route("/", name="homepage")
@@ -35,7 +35,18 @@ class VetrinaController extends AbstractController {
         ]));
     }
 
-     /*
+    /**
+     *
+     * @Route("/home/{id}", name="home")
+     */
+    public function home(Environment $twig, Dolci $Dolce, VenditaRepository $venditaRepository): Response
+    {
+        return new Response($twig->render('pasticceria/home.html.twig', [
+            'dolci' => $Dolce,
+            'vendite' => $venditaRepository->findBy(['Dolce' => $Dolce])
+        ]));
+    }
+    /*
      public function index(): Response
      {
          //$repo = 
