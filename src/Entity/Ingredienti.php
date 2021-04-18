@@ -105,7 +105,7 @@ class Ingredienti
 
     public function setDolce(?Dolci $idDolce): self
     {
-        $this->Dolce = $Dolce;
+        $this->Dolce = $idDolce;
 
         return $this;
     }

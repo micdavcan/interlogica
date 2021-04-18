@@ -45,11 +45,11 @@ class Vendita
      * })
      */
     private $Dolce;
-
+/*
     public function __toString() {
         return $this->disponibilita;
     }
-       
+*/       
     public function getIdVendita(): ?int
     {
         return $this->idVendita;
@@ -86,7 +86,7 @@ class Vendita
 
     public function setDolce(?Dolci $idDolce): self
     {
-        $this->Dolce = $Dolce;
+        $this->Dolce = $idDolce;
 
         return $this;
     }
