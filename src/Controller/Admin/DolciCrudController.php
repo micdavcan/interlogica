@@ -9,7 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 
 
@@ -29,13 +29,17 @@ class DolciCrudController extends AbstractCrudController
             ->setDefaultSort(['nome' => 'ASC']);
         ;
     }
-/*
+
     public function configureFields(string $pageName): iterable
     {
         //yield AssociationField::new('idDolce');
         yield TextField::new('nome');
-        yield MoneyField::new('prezzo');
+        yield NumberField::new('prezzo')->setNumDecimals(2);
+        yield TextField::new('foto')
+            ->onlyOnIndex();
     }
+
+
     /*
     public function configureFields(string $pageName): iterable
     {

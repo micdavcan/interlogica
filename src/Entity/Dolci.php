@@ -38,6 +38,11 @@ class Dolci
      */
     private $prezzo = '0.00';
 
+    /**
+     * @ORM\Column(name="foto_nome_file", type="string", length=100, nullable=true)
+     */
+    private $foto;
+
     public function __toString() {
         return $this->nome;
     }
@@ -67,6 +72,18 @@ class Dolci
     public function setPrezzo(string $prezzo): self
     {
         $this->prezzo = $prezzo;
+
+        return $this;
+    }
+
+    public function getFoto(): ?string
+    {
+        return $this->foto;
+    }
+
+    public function setFoto(?string $foto): self
+    {
+        $this->foto = $foto;
 
         return $this;
     }

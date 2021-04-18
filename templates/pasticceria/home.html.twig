@@ -24,7 +24,12 @@
             {% set label_prezzo_scontato = 'Prezzo scontato' %}
             {% if prezzo_scontato == vendita.Dolce.prezzo|format_decimal_number %}
                 {% set label_prezzo_scontato = 'Prezzo intero' %}    
-            {% endif %}    
+            {% endif %}
+
+            {% if vendita.Dolce.foto %}
+                <img src="{{ asset('images/' ~ vendita.Dolce.foto) }}" />
+            {% endif %}
+    
             <h3>{{ vendita.Dolce }}</h3> <h4>Prezzo € {{ vendita.Dolce.prezzo }}  -   {{ label_prezzo_scontato }} € {{ prezzo_scontato|format_decimal_number }}</h4>
             <h4>Messo in vetrina il {{ vendita.data|format_datetime('medium', 'short') }} - Pezzi in vendita: {{ vendita.disponibilita }}</h4>            
             <p>
