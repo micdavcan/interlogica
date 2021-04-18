@@ -3,6 +3,9 @@
 {% block title %}Pasticceria{% endblock %}
 
 {% block body %}
+
+    {# Header #}
+
     <p><a href="/admin">Accedi</a></p>
     <hr>
     <h1>Dolci in vetrina</h1>
@@ -30,8 +33,8 @@
                 <img src="{{ asset('images/' ~ vendita.Dolce.foto) }}" />
             {% endif %}
     
-            <h3>{{ vendita.Dolce }}</h3> <h4>Prezzo € {{ vendita.Dolce.prezzo }}  -   {{ label_prezzo_scontato }} € {{ prezzo_scontato|format_decimal_number }}</h4>
-            <h4>Messo in vetrina il {{ vendita.data|format_datetime('medium', 'short') }} - Pezzi in vendita: {{ vendita.disponibilita }}</h4>            
+            <h3>{{ vendita.Dolce }}</h3> <h4>Prezzo € {{ vendita.Dolce.prezzo|format_decimal_number({fraction_digit: 2}) }}  -   {{ label_prezzo_scontato }} € {{ prezzo_scontato|format_decimal_number({fraction_digit: 2}) }}</h4>
+            <h4>Messo in vetrina il {{ vendita.data|date("d/m/Y") }} - Pezzi in vendita: {{ vendita.disponibilita }}</h4>            
             <p>
                 <a href="/dettagli/{{ vendita.Dolce.idDolce }}">Ingredienti</a>
             </p>           
