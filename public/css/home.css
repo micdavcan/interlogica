@@ -1,0 +1,77 @@
+body {
+    /*color: #fb6f71;*/
+    color: #52596a;
+    margin: 0;
+}
+
+.header .contenitore {
+    height: 50px;
+    vertical-align: middle;
+}
+
+.contenitore {
+    position: relative;
+    text-align: left;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.row {
+    height: 46px;
+    background-color: #fb6f71;
+}
+
+.small-row {
+    height: 23px;
+    background-color: #f4baba;
+}
+
+.logo {
+    float: left;
+}
+
+.logo p {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.login {
+    float: right;
+}
+
+.login p {
+    margin: 0;
+    line-height: 2;
+}
+
+.login a {
+    margin: 0 4px;
+    display: block;
+    text-decoration: none!important;
+    /*color: #cbcdd2;*/
+    /*color: #f4baba;*/
+    color: #fb6f71;
+}
+
+.btn-login {
+    font-size: 1.5em;
+}
+
+.wrap-sub {
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.sub-titolo {
+    margin: 30px 0;
+    color: #fb6f71;
+}
+
+@media (min-width: 1200px) {
+    .contenitore,
+    .wrap-sub {
+        width: 970px;
+    }
+}

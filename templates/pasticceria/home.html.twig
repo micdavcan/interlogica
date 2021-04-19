@@ -1,45 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Pasticceria{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
 
 {% block body %}
 
     {# Header #}
+    <div class='header'>
+        <div class="contenitore">
+            <div class="logo">
+                <p>Pasticceria</p>
+            </div>
+            <div class="login">
+                <p><a title="Accedi" class="btn-login" href="/admin">Accedi</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="row"></div>
+    <div class="small-row"></div>
+    <div class="wrap">
+        <div class="wrap-sub">
+            <div class="sub-titolo">
+                <h1>Dolci in vetrina</h1>
+            </div>
 
-    <p><a href="/admin">Accedi</a></p>
-    <hr>
-    <h1>Dolci in vetrina</h1>
+            {% if vendite|length > 0 %}
+                {% for vendita in vendite %}
+                    {# Calcolo il prezzo in base ai giorni di messa in vendita #}
+                    {# Stesso giorno - 100% #}
+                    {% set prezzo_scontato = vendita.Dolce.prezzo %}
+                    
+                    {% if vendita.data|date("d/m/Y") == date('-2days')|date("d/m/Y") %}
+                        {# Dopo un giorno - 80% #}
+                        {% set prezzo_scontato = prezzo_scontato - (prezzo_scontato * 80 / 100) %}
+                    {% elseif vendita.data|date("d/m/Y") == date('-1days')|date("d/m/Y") %}    
+                        {# Dopo due giorni - 20% #}
+                        {% set prezzo_scontato = prezzo_scontato - (prezzo_scontato * 20 / 100) %}                
+                    {% endif %}
 
-    {% if vendite|length > 0 %}
-        {% for vendita in vendite %}
-            {# Calcolo il prezzo in base ai giorni di messa in vendita #}
-            {# Stesso giorno - 100% #}
-            {% set prezzo_scontato = vendita.Dolce.prezzo %}
+                    {% set label_prezzo_scontato = 'Prezzo scontato' %}
+                    {% if prezzo_scontato == vendita.Dolce.prezzo|format_decimal_number %}
+                        {% set label_prezzo_scontato = 'Prezzo intero' %}    
+                    {% endif %}
+
+                    {% if vendita.Dolce.foto %}
+                        <img src="{{ asset('images/' ~ vendita.Dolce.foto) }}" />
+                    {% endif %}
             
-            {% if vendita.data|date("d/m/Y") == date('-2days')|date("d/m/Y") %}
-                {# Dopo un giorno - 80% #}
-                {% set prezzo_scontato = prezzo_scontato - (prezzo_scontato * 80 / 100) %}
-            {% elseif vendita.data|date("d/m/Y") == date('-1days')|date("d/m/Y") %}    
-                {# Dopo due giorni - 20% #}
-                {% set prezzo_scontato = prezzo_scontato - (prezzo_scontato * 20 / 100) %}                
+                    <h3>{{ vendita.Dolce }}</h3> <h4>Prezzo € {{ vendita.Dolce.prezzo|format_decimal_number({fraction_digit: 2}) }}  -   {{ label_prezzo_scontato }} € {{ prezzo_scontato|format_decimal_number({fraction_digit: 2}) }}</h4>
+                    <h4>Messo in vetrina il {{ vendita.data|date("d/m/Y") }} - Pezzi in vendita: {{ vendita.disponibilita }}</h4>            
+                    <p>
+                        <a href="/dettagli/{{ vendita.Dolce.idDolce }}">Ingredienti</a>
+                    </p>           
+                {% endfor %}
+            {% else %}
+                <div>Non sono stati ancora inseriti dolci in vetrina.</div>
             {% endif %}
 
-            {% set label_prezzo_scontato = 'Prezzo scontato' %}
-            {% if prezzo_scontato == vendita.Dolce.prezzo|format_decimal_number %}
-                {% set label_prezzo_scontato = 'Prezzo intero' %}    
-            {% endif %}
+        </div>
+    </div>
 
-            {% if vendita.Dolce.foto %}
-                <img src="{{ asset('images/' ~ vendita.Dolce.foto) }}" />
-            {% endif %}
-    
-            <h3>{{ vendita.Dolce }}</h3> <h4>Prezzo € {{ vendita.Dolce.prezzo|format_decimal_number({fraction_digit: 2}) }}  -   {{ label_prezzo_scontato }} € {{ prezzo_scontato|format_decimal_number({fraction_digit: 2}) }}</h4>
-            <h4>Messo in vetrina il {{ vendita.data|date("d/m/Y") }} - Pezzi in vendita: {{ vendita.disponibilita }}</h4>            
-            <p>
-                <a href="/dettagli/{{ vendita.Dolce.idDolce }}">Ingredienti</a>
-            </p>           
-        {% endfor %}
-    {% else %}
-        <div>Non sono stati ancora inseriti dolci in vetrina.</div>
-    {% endif %}
 {% endblock %}
