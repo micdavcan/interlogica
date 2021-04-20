@@ -1,25 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pasticceria - {{ dolci }}{% endblock %}
+{% block title %}Ingredienti{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/ingredienti.css') }}">
+{% endblock %}
 
 {% block body %}
-    <h2>Dolce - {{ dolci }}</h2>
-
-    {% if ingredienti|length > 0 %}
-        {% for ingrediente in ingredienti %}
-            {#
-            {% if ingrediente.photofilename %}
-                <img src="{{ asset('uploads/photos/' ~ ingrediente.photofilename) }}" />
+    {# Header #}
+    <div class='header'>
+        <div class="contenitore">
+            <div class="logo">
+                <p>Pasticceria</p>
+            </div>
+            <div class="login">
+                <p><a title="Accedi" class="btn-login" href="/admin">Accedi</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="row"></div>
+    <div class="small-row"></div>
+    <div class="wrap">
+        <div class="wrap-sub">
+            <div class="sub-titolo">            
+                <h2>Dolce - {{ dolci }}</h2>
+            </div>
+            {% if dolci.foto %}
+                <div class="sub-img">
+                    <img src="{{ asset('images/' ~ dolci.foto) }}" />
+                </div>
             {% endif %}
-            #}
-            <h4>{{ ingrediente.nome }}</h4>
-            <small>
-                {{ ingrediente.quantita }} {{ ingrediente.unitaMisura}}
-            </small>
-
-            {#<p>{{ ingrediente.text }}</p>#}
-        {% endfor %}
-    {% else %}
-        <div>Non sono stati ancora inseriti ingredienti per il dolce.</div>
-    {% endif %}
+            
+            {% if ingredienti|length > 0 %}
+                {% for ingrediente in ingredienti %}
+                    <div class="wrap-sub-left-buttom">
+                        <span class="left-buttom-left"><p>{{ ingrediente.nome }}</p></span>                        
+                        <span class="left-buttom-right"><p>{{ ingrediente.quantita }} {{ ingrediente.unitaMisura}}</p></span>
+                    </div>
+                    {#
+                    <h4>{{ ingrediente.nome }}</h4>
+                    <small>
+                        {{ ingrediente.quantita }} {{ ingrediente.unitaMisura}}
+                    </small>
+                    #}
+                {% endfor %}
+            {% else %}
+                <div>Non sono stati ancora inseriti ingredienti per il dolce.</div>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

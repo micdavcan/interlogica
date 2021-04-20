@@ -74,62 +74,27 @@ body a {
     color: #fb6f71;
 }
 
-.wrap-sub-left {
-    float: left;
-    width: 74%;
-    margin-bottom: 40px;
+.sub-img {
+    margin-bottom: 20px;
+}
+
+.wrap-sub-left-buttom {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.wrap-sub-left-buttom p {
+    margin: 0 0 10px;
 }
 
 .left-buttom-left {
     font-weight: 600;
     float: left;
+    width: 20%;
 }
 
 .left-buttom-right {
     float: right;
-}
-
-.left-buttom-right a {
     color: #fb6f71;
 }
 
-.left-buttom-right a:hover{
-    font-weight: 600;
-}
-
-.wrap-sub-right {
-    float: left;
-    padding-left: 20px;
-    width: 23.8%;
-}
-
-.nome-dolce {
-    color: #fb6f71;
-    font-size: 1.5em;
-    font-weight: 600;
-    margin: 0 0 30px;
-}
-
-.wrap-sub-right p {   
-    font-weight: 600;
-}
-
-.strike {
-    text-decoration: line-through;
-    color: #fb6f71;
-}
-
-.no-strike {
-    text-decoration: none;
-}
-
-.hidden {
-    display: none;
-}
-
-.hidden {
-    display: inherit;
-}
-
-@media (max-width: 782px) {
-}
