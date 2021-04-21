@@ -1,0 +1,135 @@
+body {
+    color: #52596a;
+    margin: 0;
+}
+
+body a {
+    text-decoration: none!important;
+}
+
+.header .contenitore {
+    height: 50px;
+    vertical-align: middle;
+}
+
+.contenitore {
+    position: relative;
+    text-align: left;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.row {
+    height: 46px;
+    background-color: #fb6f71;
+}
+
+.small-row {
+    height: 23px;
+    background-color: #f4baba;
+}
+
+.logo {
+    float: left;
+}
+
+.logo p {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.login {
+    float: right;
+}
+
+.login p {
+    margin: 0;
+    line-height: 2;
+}
+
+.login a {
+    margin: 0 4px;
+    display: block;
+    color: #fb6f71;
+}
+
+.btn-login {
+    font-size: 1.5em;
+}
+
+.wrap-sub {
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.contenitore,
+.wrap-sub {
+    width: 970px;
+}
+
+.sub-titolo {
+    margin: 30px 0;
+    color: #fb6f71;
+}
+
+.wrap-sub-left {
+    float: left;
+    width: 74%;
+    margin-bottom: 40px;
+}
+
+.left-buttom-left {
+    font-weight: 600;
+    float: left;
+}
+
+.left-buttom-right {
+    float: right;
+}
+
+.left-buttom-right a {
+    color: #fb6f71;
+}
+
+.left-buttom-right a:hover{
+    font-weight: 600;
+}
+
+.wrap-sub-right {
+    float: left;
+    padding-left: 20px;
+    width: 23.8%;
+}
+
+.nome-dolce {
+    color: #fb6f71;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0 0 30px;
+}
+
+.wrap-sub-right p {   
+    font-weight: 600;
+}
+
+.strike {
+    text-decoration: line-through;
+    color: #fb6f71;
+}
+
+.no-strike {
+    text-decoration: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.no-hidden {
+    display: inherit;
+}
+
+@media (max-width: 782px) {
+}

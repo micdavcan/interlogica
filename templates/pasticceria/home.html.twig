@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pasticceria{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    {# Header #}
+    <div class='header'>
+        <div class="contenitore">
+            <div class="logo">
+                <p>Pasticceria</p>
+            </div>
+            <div class="login">
+                <p><a title="Accedi" class="btn-login" href="/admin">Accedi</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="row"></div>
+    <div class="small-row"></div>
+    <div class="wrap">
+        <div class="wrap-sub">
+            <div class="sub-titolo">
+                <h1>Dolci in vetrina</h1>
+            </div>
+            {% if vendite|length > 0 %}
+                {% for vendita in vendite %}
+                    {# Calcolo il prezzo in base ai giorni di messa in vendita #}
+                    {# Stesso giorno - 100% #}
+                    {% set prezzo_scontato = vendita.Dolce.prezzo %}
+                    
+                    {% if vendita.data|date("d/m/Y") == date('-2days')|date("d/m/Y") %}
+                        {# Dopo un giorno - 80% #}
+                        {% set prezzo_scontato = prezzo_scontato - (prezzo_scontato * 80 / 100) %}
+                    {% elseif vendita.data|date("d/m/Y") == date('-1days')|date("d/m/Y") %}    
+                        {# Dopo due giorni - 20% #}
+                        {% set prezzo_scontato = prezzo_scontato - (prezzo_scontato * 20 / 100) %}                
+                    {% endif %}
+
+                    {# {% set label_prezzo_scontato = 'Prezzo scontato' %} #}
+                    {% set strike = "strike" %}
+                    {% set hidden = "no-hidden" %}
+                    {% if prezzo_scontato == vendita.Dolce.prezzo|format_decimal_number %}
+                        {# {% set label_prezzo_scontato = 'Prezzo intero' %} #}
+                        {% set hidden = "hidden" %}
+                        {% set strike = "no-strike" %}    
+                    {% endif %}
+
+                    <div class="wrap-sub-left">
+                        {% if vendita.Dolce.foto %}
+                            <img src="{{ asset('images/' ~ vendita.Dolce.foto) }}" />
+                        {% endif %}
+
+                        <div class="wrap-sub-left-buttom">
+                            <span class="left-buttom-left"><p>Messo in vetrina il {{ vendita.data|date("d/m/Y") }}</p></span>                        
+                            <span class="left-buttom-right"><p><a href="/dettagli/{{ vendita.Dolce.idDolce }}">Ingredienti</a></p></span>
+                        </div>
+                    </div>
+                    <div class="wrap-sub-right">
+                        <p class="nome-dolce">{{ vendita.Dolce }}</p>
+                        <p>Disponibilità: {{ vendita.disponibilita }}</p>
+                        <p class={{strike}}>Prezzo € {{ vendita.Dolce.prezzo|format_decimal_number({fraction_digit: 2}) }}</p>
+                        <p class={{hidden}}>Prezzo scontato € {{ prezzo_scontato|format_decimal_number({fraction_digit: 2}) }}</p> 
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div>Non sono stati ancora inseriti dolci in vetrina.</div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

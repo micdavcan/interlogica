@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use App\Repository\IngredientiRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Ingredienti
  *
  * @ORM\Table(name="ingredienti", indexes={@ORM\Index(name="fk_ingredienti_dolci1_idx", columns={"id_dolce"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=IngredientiRepository::class)
  */
 class Ingredienti
 {
@@ -104,7 +105,7 @@ class Ingredienti
 
     public function setDolce(?Dolci $idDolce): self
     {
-        $this->Dolce = $Dolce;
+        $this->Dolce = $idDolce;
 
         return $this;
     }

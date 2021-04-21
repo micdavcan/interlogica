@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use App\Repository\VenditaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Vendita
  *
- * @ORM\Table(name="vendita")
- * @ORM\Entity
+ * @ORM\Table(name="vendita", indexes={@ORM\Index(name="fk_vendita_dolci1_idx", columns={"id_dolce"})})
+ * @ORM\Entity(repositoryClass=VenditaRepository::class)
  */
 class Vendita
 {
@@ -31,10 +32,24 @@ class Vendita
     /**
      * @var int
      *
-     * @ORM\Column(name="disponibilità", type="smallint", nullable=false, options={"unsigned"=true})
+     * @ORM\Column(name="disponibilita", type="smallint", nullable=false, options={"unsigned"=true})
      */
-    private $disponibilità;
+    private $disponibilita;
 
+    /**
+     * @var \Dolci
+     *
+     * @ORM\ManyToOne(targetEntity="Dolci")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_dolce", referencedColumnName="id_dolce")
+     * })
+     */
+    private $Dolce;
+/*
+    public function __toString() {
+        return $this->disponibilita;
+    }
+*/       
     public function getIdVendita(): ?int
     {
         return $this->idVendita;
@@ -52,14 +67,26 @@ class Vendita
         return $this;
     }
 
-    public function getDisponibilità(): ?int
+    public function getDisponibilita(): ?int
     {
-        return $this->disponibilità;
+        return $this->disponibilita;
     }
 
-    public function setDisponibilità(int $disponibilità): self
+    public function setDisponibilita(int $disponibilita): self
     {
-        $this->disponibilità = $disponibilità;
+        $this->disponibilita = $disponibilita;
+
+        return $this;
+    }
+
+    public function getDolce(): ?Dolci
+    {
+        return $this->Dolce;
+    }
+
+    public function setDolce(?Dolci $idDolce): self
+    {
+        $this->Dolce = $idDolce;
 
         return $this;
     }

@@ -2,61 +2,50 @@
 
 namespace App\Entity;
 
+use App\Repository\GestoriRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Gestori
- *
- * @ORM\Table(name="gestori", uniqueConstraints={@ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=GestoriRepository::class)
  */
-class Gestori
+class Gestori implements UserInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_gestore", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
-    private $idGestore;
+    private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nome", type="string", length=45, nullable=false)
-     */
-    private $nome;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=45, nullable=false)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=45, nullable=false)
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
     private $password;
 
-    public function getIdGestore(): ?int
-    {
-        return $this->idGestore;
-    }
+    /**
+     * @ORM\Column(type="string", length=45)
+     */
+    private $nome;
 
-    public function getNome(): ?string
-    {
+    public function __toString() {
         return $this->nome;
     }
 
-    public function setNome(string $nome): self
+    public function getId(): ?int
     {
-        $this->nome = $nome;
-
-        return $this;
+        return $this->id;
     }
 
     public function getEmail(): ?string
@@ -71,9 +60,41 @@ class Gestori
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->password;
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
@@ -83,5 +104,35 @@ class Gestori
         return $this;
     }
 
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
 
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function getNome(): ?string
+    {
+        return $this->nome;
+    }
+
+    public function setNome(string $nome): self
+    {
+        $this->nome = $nome;
+
+        return $this;
+    }
 }

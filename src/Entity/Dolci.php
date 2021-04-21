@@ -4,13 +4,14 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Repository\DolciRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Dolci
  *
- * @ORM\Table(name="dolci", indexes={@ORM\Index(name="fk_dolci_vendita1_idx", columns={"id_vendita"})})
- * @ORM\Entity
+ * @ORM\Table(name="dolci")
+ * @ORM\Entity(repositoryClass=DolciRepository::class)
  */
 class Dolci
 {
@@ -38,15 +39,9 @@ class Dolci
     private $prezzo = '0.00';
 
     /**
-     * @var \Vendita
-     *
-     * @ORM\ManyToOne(targetEntity="Vendita")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_vendita", referencedColumnName="id_vendita")
-     * })
+     * @ORM\Column(name="foto_nome_file", type="string", length=100, nullable=true)
      */
-    private $idVendita;
-
+    private $foto;
 
     public function __toString() {
         return $this->nome;
@@ -81,14 +76,14 @@ class Dolci
         return $this;
     }
 
-    public function getIdVendita(): ?Vendita
+    public function getFoto(): ?string
     {
-        return $this->idVendita;
+        return $this->foto;
     }
 
-    public function setIdVendita(?Vendita $idVendita): self
+    public function setFoto(?string $foto): self
     {
-        $this->idVendita = $idVendita;
+        $this->foto = $foto;
 
         return $this;
     }
