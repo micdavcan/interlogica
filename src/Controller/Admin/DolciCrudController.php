@@ -35,8 +35,8 @@ class DolciCrudController extends AbstractCrudController
         //yield AssociationField::new('idDolce');
         yield TextField::new('nome');
         yield NumberField::new('prezzo')->setNumDecimals(2);
-        yield TextField::new('foto')
-            ->onlyOnIndex();
+        yield TextField::new('foto');
+        //    ->onlyOnIndex();
     }
 
 

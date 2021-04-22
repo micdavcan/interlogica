@@ -42,7 +42,7 @@
                     {# {% set label_prezzo_scontato = 'Prezzo scontato' %} #}
                     {% set strike = "strike" %}
                     {% set hidden = "no-hidden" %}
-                    {% if prezzo_scontato == vendita.Dolce.prezzo|format_decimal_number %}
+                    {% if prezzo_scontato == vendita.Dolce.prezzo %}
                         {# {% set label_prezzo_scontato = 'Prezzo intero' %} #}
                         {% set hidden = "hidden" %}
                         {% set strike = "no-strike" %}    
@@ -51,6 +51,8 @@
                     <div class="wrap-sub-left">
                         {% if vendita.Dolce.foto %}
                             <img src="{{ asset('images/' ~ vendita.Dolce.foto) }}" />
+                        {% else %}
+                            <img src="{{ asset('images/immagine-non-disponibile.png') }}" alt="Immagine non disponibile">
                         {% endif %}
 
                         <div class="wrap-sub-left-buttom">
