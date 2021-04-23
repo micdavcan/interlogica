@@ -56,3 +56,19 @@ N.B.: andranno sostituiti i valori relativi a 'server_version', 'dbname', 'user'
 N.B.: La password è stata criptata usando il comando: $php bin/console secrets:set DATABASE_PASSWORD e richiamata in doctrine.yaml
       tramite il comando "%env(DATABASE_PASSWORD)%"
       Per eliminare la password esistente usare $php bin/console secrets:remove DATABASE_PASSWORD
+
+Nel caso in cui dovessero sorgere problemi con la variabile d'ambiente DATABASE_PASSWORD ("%env(DATABASE_PASSWORD)%")
+procedere come segue:
+1- Rimuovere la password esistente con 
+    $php bin/console secrets:remove DATABASE_PASSWORD
+
+2- Se esistono in config/secrets/dev/ uno o più files dev.*.{public,private}, occorre eliminarli.
+
+3- Generare una nuova coppia di chiavi crittografiche asimmetriche
+    $ php bin/console secrets:generate-keys
+
+4- Creare la variabile DATABASE_PASSWORD con un nuova password criptata
+    $ php bin/console secrets:set DATABASE_PASSWORD
+
+4- Cancellare tutti gli elementi della cache
+    $ php bin/console cache:clear
